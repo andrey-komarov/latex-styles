@@ -3,12 +3,32 @@
 
 \LoadClass[14pt,a4paper]{extreport}
 
-%% Russian language in UTF-8
-
-\RequirePackage[utf8]{inputenc}
-\RequirePackage[T2A]{fontenc}
-\RequirePackage[english,german,russian]{babel}
-\RequirePackage{csquotes}
+\RequirePackage{ifxetex}
+\ifxetex
+  \RequirePackage{fontspec}
+  \RequirePackage{polyglossia}
+  \RequirePackage{csquotes}
+  \RequirePackage{kvoptions}
+  \DeclareStringOption[FreeSerif]{font}
+  \setdefaultlanguage[spelling=modern]{russian}
+  \setotherlanguage{english}
+  %\newcommand{\myfont}[0]{XITS}
+  \newcommand{\myfont}[0]{FreeSerif}
+  %\newcommand{\myfont}[0]{Times New Roman}
+  %\newcommand{\myfont}[0]{Comic Sans MS}
+  \defaultfontfeatures{Ligatures=TeX}
+  \setmainfont[Ligatures=TeX]{\myfont}
+  \newfontfamily\cyrillicfontsf{\myfont}
+  \newfontfamily\cyrillicfontit{\myfont}
+  \newfontfamily\cyrillicfonttt{\myfont}
+  \newfontfamily\cyrillicfont{\myfont}
+\else
+  %% Russian language in UTF-8
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage[T2A]{fontenc}
+  \RequirePackage[english,german,russian]{babel}
+  \RequirePackage{csquotes}
+\fi
 
 %% Теперь можно писать по-русски.
 %% Формируем отступы
@@ -493,7 +513,7 @@
         \vspace{0cm plus 1fill minus 0cm}
         \titletabutwo{Факультет}{\uline{\hfill\thefaculty\hfill~}}\\
         \titletabutwo{Направление (специальность)}{\uline{\hfill\thespecialty\hfill~}}\\
-        \titletabutwo{Квалификация (степень)}{\uline{\hfillМагистр \thedegreetail\hfill~}}\\
+        \titletabutwo{Квалификация (степень)}{\uline{\hfill Магистр \thedegreetail\hfill~}}\\
         \titletabufour{Кафедра}{\thechair}{Группа}{\thestudygroup}\\
         \vspace{0cm plus 1fill minus 0cm}
         \begin{center}
@@ -528,7 +548,7 @@
         \titletabutwo{Факультет}{\uline{\hfill\thefaculty\hfill~}}\\
         \titletabufour{Кафедра}{\thechair}{Группа}{\thestudygroup}\\
         \titletabutwo{Направление подготовки}{\uline{\hfill\thespecialty\hfill~}}\\
-        \titletabutwo{Квалификация (степень)}{\uline{\hfillМагистр \thedegreetail\hfill~}}\\
+        \titletabutwo{Квалификация (степень)}{\uline{\hfill Магистр \thedegreetail\hfill~}}\\
 		\titletabutwo{Специальное звание}{\uline{~\hfill~}}\\
 		\titletabutwow{Наименование темы}{\thetitle}\\
 		\titletabutwo{Научный руководитель}{\uline{\hfill\thesupervisor, \thesupervisordegree\hfill~}}\\
